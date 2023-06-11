@@ -11,7 +11,7 @@ export default class Education extends React.Component {
       <>
         {this.props.educationArray.map((education) => {
           return (
-            <div className="education" id={education.id}>
+            <div className="education" key={education.key}>
               <label htmlFor="school-name" className="school-name-label">
                 School Name:
                 <input
