@@ -2,6 +2,7 @@ import React from "react";
 import Heading from "./components/heading";
 import Education from "./components/education";
 import Experience from "./components/experience";
+import Form from "./components/form";
 import "./styles/index.css";
 import uniqid from "uniqid";
 
@@ -47,14 +48,12 @@ class App extends React.Component {
         },
       ],
 
-      headingArray: [
-        {
-          firstName: "",
-          lastName: "",
-          email: "",
-          phoneNumber: "",
-        },
-      ],
+      heading: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+      },
     };
   }
 
@@ -125,38 +124,59 @@ class App extends React.Component {
 
   submitForm(e) {
     e.preventDefault();
-
-    const form = document.querySelector(".App");
+    const headingSection = document.querySelector(".heading");
+    const firstName = headingSection.childNodes[0].childNodes[1].value;
+    const lastName = headingSection.childNodes[1].childNodes[1].value;
+    const email = headingSection.childNodes[2].childNodes[1].value;
+    const phoneNumber = headingSection.childNodes[3].childNodes[1].value;
+    this.setState({
+      heading: {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumber,
+      },
+    });
+    const form = document.querySelector("form");
+    form.style.display = "none";
   }
 
   render() {
     return (
-      <form className="App">
-        <h1>CV Application</h1>
-        <Heading />
-        <section className="education-container">
-          <Education educationArray={this.state.educationArray} />
-          <button
-            className="add-education-btn"
-            onClick={this.boundedAddEducation}
-          >
-            Add Education
+      <div className="App">
+        <form>
+          <h1>CV Application</h1>
+          <Heading />
+          <section className="education-container">
+            <Education educationArray={this.state.educationArray} />
+            <button
+              className="add-education-btn"
+              onClick={this.boundedAddEducation}
+            >
+              Add Education
+            </button>
+          </section>
+          <section className="experience-container">
+            <Experience experienceArray={this.state.experienceArray} />
+            <button
+              className="add-experience-btn"
+              onClick={this.boundedAddExperience}
+            >
+              Add Experience
+            </button>
+          </section>
+          <button className="submit-form-btn" onClick={this.boundedSubmitForm}>
+            Submit Form
           </button>
-        </section>
-
-        <section className="experience-container">
-          <Experience experienceArray={this.state.experienceArray} />
-          <button
-            className="add-experience-btn"
-            onClick={this.boundedAddExperience}
-          >
-            Add Experience
-          </button>
-        </section>
-        <button className="submit-form-btn" onClick={this.boundedSubmitForm}>
-          Submit Form
-        </button>
-      </form>
+        </form>
+        <div className="content">
+          <Form
+            heading={this.state.heading}
+            educationArray={this.state.education}
+            experienceArray={this.state.experienceArray}
+          />
+        </div>
+      </div>
     );
   }
 }

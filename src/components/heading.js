@@ -8,7 +8,7 @@ export default class Heading extends React.Component {
 
   render() {
     return (
-      <div id="heading">
+      <div className="heading">
         <label htmlFor="first-name">
           First Name:
           <input placeholder="Enter First Name" name="first-name"></input>
