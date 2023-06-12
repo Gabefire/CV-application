@@ -9,73 +9,133 @@ import uniqid from "uniqid";
 class App extends React.Component {
   constructor() {
     super();
+    this.boundedSwitchViews = this.switchViews.bind(this);
     this.boundedAddEducation = this.addEducation.bind(this);
     this.boundedAddExperience = this.addExperience.bind(this);
     this.boundedSubmitForm = this.submitForm.bind(this);
     this.state = {
-      displayForm: false,
+      showContent: false,
+      displayForm: true,
       education: {
-        schoolName: "",
-        titleOfStudy: "",
-        date: "",
-        key: "",
+        schoolName: null,
+        titleOfStudy: null,
+        date: null,
+        key: null,
       },
 
       educationArray: [
         {
-          schoolName: "",
-          titleOfStudy: "",
-          date: "",
+          schoolName: "Missouri Technology of Science and Technology",
+          titleOfStudy: "B.A. Engineering",
+          date: "2019",
           key: uniqid(),
         },
       ],
 
       experience: {
-        companyName: "",
-        positionTitle: "",
-        dates: "",
-        task: "",
+        companyName: null,
+        positionTitle: null,
+        dates: null,
+        task: null,
         key: uniqid(),
       },
 
       experienceArray: [
         {
-          companyName: "",
-          positionTitle: "",
-          dates: "",
-          task: "",
+          companyName: "Veterans United Home Loans",
+          positionTitle: "Loan Coordinator",
+          dates: "2019-present",
+          task: "Provide excellent customer service and solve problems",
           key: uniqid(),
         },
       ],
 
       heading: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        phoneNumber: "",
+        firstName: "Gabriel",
+        lastName: "Underwood",
+        email: "gabe1996@gmail.com",
+        phoneNumber: "573-854-3238",
+        key: uniqid(),
       },
     };
+  }
+
+  switchViews() {
+    this.setState({
+      showContent: !this.state.showContent,
+      displayForm: !this.state.displayForm,
+    });
+  }
+
+  showContent() {
+    return (
+      <div className="content">
+        <Form
+          heading={this.state.heading}
+          educationArray={this.state.educationArray}
+          experienceArray={this.state.experienceArray}
+        />
+        <div className="button-container">
+          <button className="edit-btn" onClick={this.boundedSwitchViews}>
+            Edit
+          </button>
+          <button className="print-btn">Print</button>
+        </div>
+      </div>
+    );
+  }
+
+  showForm() {
+    return (
+      <form className="form">
+        <h1>CV Application</h1>
+        <Heading heading={this.state.heading} />
+        <section className="education-container">
+          <Education educationArray={this.state.educationArray} />
+          <button
+            className="add-education-btn"
+            onClick={this.boundedAddEducation}
+          >
+            Add Education
+          </button>
+        </section>
+        <section className="experience-container">
+          <Experience experienceArray={this.state.experienceArray} />
+          <button
+            className="add-experience-btn"
+            onClick={this.boundedAddExperience}
+          >
+            Add Experience
+          </button>
+        </section>
+        <button className="submit-form-btn" onClick={this.boundedSubmitForm}>
+          Submit Form
+        </button>
+      </form>
+    );
   }
 
   addEducation(e) {
     e.preventDefault();
     const educationSection = document.querySelectorAll(".education");
+    const educationArray = [];
     educationSection.forEach((section) => {
       const schoolName = section.childNodes[0].childNodes[1].value;
       const titleOfStudy = section.childNodes[1].childNodes[1].value;
       const date = section.childNodes[2].childNodes[1].value;
-      const key = section.key;
-      this.setState({
+      const key = section.id;
+      const educationObject = {
         education: {
           schoolName: schoolName,
           titleOfStudy: titleOfStudy,
           date: date,
           key: key,
         },
-      });
-      this.setState({
-        educationArray: [...this.state.educationArray, this.state.education],
-      });
+      };
+      educationArray.push(educationObject);
+    });
+    this.setState({
+      educationArray: educationArray,
     });
     this.setState({
       education: {
@@ -91,24 +151,25 @@ class App extends React.Component {
   addExperience(e) {
     e.preventDefault();
     const experienceSection = document.querySelectorAll(".experience");
+    const experienceArray = [];
     experienceSection.forEach((section) => {
       const companyName = section.childNodes[0].childNodes[1].value;
       const positionTitle = section.childNodes[1].childNodes[1].value;
       const dates = section.childNodes[2].childNodes[1].value;
       const task = section.childNodes[3].childNodes[1].value;
-      const key = section.key;
-      this.setState({
+      const experienceObject = {
         experience: {
           companyName: companyName,
           positionTitle: positionTitle,
           dates: dates,
           task: task,
-          key: key,
+          key: uniqid(),
         },
-      });
-      this.setState({
-        experienceArray: [...this.state.experienceArray, this.state.experience],
-      });
+      };
+      experienceArray.push(experienceObject);
+    });
+    this.setState({
+      experienceArray: experienceArray,
     });
     this.setState({
       experience: {
@@ -137,45 +198,62 @@ class App extends React.Component {
         phoneNumber: phoneNumber,
       },
     });
-    const form = document.querySelector("form");
-    form.style.display = "none";
+
+    const experienceSection = document.querySelectorAll(".experience");
+    const experienceArray = [];
+    experienceSection.forEach((section) => {
+      const companyName = section.childNodes[0].childNodes[1].value;
+      const positionTitle = section.childNodes[1].childNodes[1].value;
+      const dates = section.childNodes[2].childNodes[1].value;
+      const task = section.childNodes[3].childNodes[1].value;
+      const key = section.id;
+      const experienceObject = {
+        experience: {
+          companyName: companyName,
+          positionTitle: positionTitle,
+          dates: dates,
+          task: task,
+          key: key,
+        },
+      };
+      experienceArray.push(experienceObject);
+    });
+    this.setState({
+      experienceArray: experienceArray,
+    });
+
+    const educationSection = document.querySelectorAll(".education");
+    const educationArray = [];
+    educationSection.forEach((section) => {
+      const schoolName = section.childNodes[0].childNodes[1].value;
+      const titleOfStudy = section.childNodes[1].childNodes[1].value;
+      const date = section.childNodes[2].childNodes[1].value;
+      const key = section.id;
+      const educationObject = {
+        education: {
+          schoolName: schoolName,
+          titleOfStudy: titleOfStudy,
+          date: date,
+          key: key,
+        },
+      };
+      educationArray.push(educationObject);
+    });
+    this.setState({
+      educationArray: educationArray,
+    });
+
+    this.setState({
+      displayForm: false,
+      showContent: true,
+    });
   }
 
   render() {
     return (
       <div className="App">
-        <form>
-          <h1>CV Application</h1>
-          <Heading />
-          <section className="education-container">
-            <Education educationArray={this.state.educationArray} />
-            <button
-              className="add-education-btn"
-              onClick={this.boundedAddEducation}
-            >
-              Add Education
-            </button>
-          </section>
-          <section className="experience-container">
-            <Experience experienceArray={this.state.experienceArray} />
-            <button
-              className="add-experience-btn"
-              onClick={this.boundedAddExperience}
-            >
-              Add Experience
-            </button>
-          </section>
-          <button className="submit-form-btn" onClick={this.boundedSubmitForm}>
-            Submit Form
-          </button>
-        </form>
-        <div className="content">
-          <Form
-            heading={this.state.heading}
-            educationArray={this.state.education}
-            experienceArray={this.state.experienceArray}
-          />
-        </div>
+        {this.state.displayForm ? this.showForm() : null}
+        {this.state.showContent ? this.showContent() : null}
       </div>
     );
   }

@@ -11,7 +11,11 @@ export default class Experience extends React.Component {
       <>
         {this.props.experienceArray.map((experience) => {
           return (
-            <div className="experience" key={experience.key}>
+            <div
+              className="experience"
+              id={experience.key}
+              key={experience.key}
+            >
               <label htmlFor="company-name">
                 Company Name:
                 <input

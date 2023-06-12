@@ -4,6 +4,12 @@
   gap: 20px;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
 .content {
-  display: none;
+  display: flex;
+  flex-direction: column;
 }
