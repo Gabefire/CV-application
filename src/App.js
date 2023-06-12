@@ -87,7 +87,7 @@ class App extends React.Component {
 
   showForm() {
     return (
-      <form className="form">
+      <form className="form" key={uniqid()}>
         <h1>CV Application</h1>
         <Heading heading={this.state.heading} />
         <section className="education-container">
@@ -125,12 +125,10 @@ class App extends React.Component {
       const date = section.childNodes[2].childNodes[1].value;
       const key = section.id;
       const educationObject = {
-        education: {
-          schoolName: schoolName,
-          titleOfStudy: titleOfStudy,
-          date: date,
-          key: key,
-        },
+        schoolName: schoolName,
+        titleOfStudy: titleOfStudy,
+        date: date,
+        key: key,
       };
       educationArray.push(educationObject);
     });
@@ -157,14 +155,13 @@ class App extends React.Component {
       const positionTitle = section.childNodes[1].childNodes[1].value;
       const dates = section.childNodes[2].childNodes[1].value;
       const task = section.childNodes[3].childNodes[1].value;
+      const key = section.id;
       const experienceObject = {
-        experience: {
-          companyName: companyName,
-          positionTitle: positionTitle,
-          dates: dates,
-          task: task,
-          key: uniqid(),
-        },
+        companyName: companyName,
+        positionTitle: positionTitle,
+        dates: dates,
+        task: task,
+        key: key,
       };
       experienceArray.push(experienceObject);
     });
@@ -208,13 +205,11 @@ class App extends React.Component {
       const task = section.childNodes[3].childNodes[1].value;
       const key = section.id;
       const experienceObject = {
-        experience: {
-          companyName: companyName,
-          positionTitle: positionTitle,
-          dates: dates,
-          task: task,
-          key: key,
-        },
+        companyName: companyName,
+        positionTitle: positionTitle,
+        dates: dates,
+        task: task,
+        key: key,
       };
       experienceArray.push(experienceObject);
     });
@@ -230,19 +225,16 @@ class App extends React.Component {
       const date = section.childNodes[2].childNodes[1].value;
       const key = section.id;
       const educationObject = {
-        education: {
-          schoolName: schoolName,
-          titleOfStudy: titleOfStudy,
-          date: date,
-          key: key,
-        },
+        schoolName: schoolName,
+        titleOfStudy: titleOfStudy,
+        date: date,
+        key: key,
       };
       educationArray.push(educationObject);
     });
     this.setState({
       educationArray: educationArray,
     });
-
     this.setState({
       displayForm: false,
       showContent: true,
