@@ -1,0 +1,99 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 40%;
+  align-self: center;
+  border: 2px solid black;
+  padding: 60px;
+  margin-top: 50px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.heading-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-self: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 20px;
+}
+
+.name {
+  margin-top: 0;
+  align-self: center;
+  font-size: 2.5rem;
+}
+
+.contact-information {
+  display: flex;
+  justify-content: space-around;
+}
+
+.education-title {
+  margin-bottom: 0;
+  border-bottom: 2px solid lightgray;
+  padding-bottom: 5px;
+  font-size: 1.3rem;
+}
+
+.school {
+  display: flex;
+  gap: 50px;
+}
+
+.school-name {
+  font-weight: bold;
+}
+
+.experience-title {
+  margin-bottom: 0;
+  border-bottom: 2px solid lightgray;
+  padding-bottom: 5px;
+  font-size: 1.3rem;
+}
+
+.job {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.job-content {
+  display: flex;
+  gap: 50px;
+}
+
+.position-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  gap: 10px;
+  align-self: center;
+  align-items: center;
+}
+
+.form-btn {
+  height: 35px;
+  width: 70%;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+
+.edit-btn {
+  background-color: rgb(3, 3, 185);
+}
+
+.print-btn {
+  background-color: black;
+}

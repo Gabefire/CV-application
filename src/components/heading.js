@@ -14,6 +14,7 @@ export default class Heading extends React.Component {
           <input
             placeholder="Enter First Name"
             name="first-name"
+            id="first-name"
             defaultValue={this.props.heading.firstName}
           ></input>
         </label>
@@ -22,6 +23,7 @@ export default class Heading extends React.Component {
           <input
             placeholder="Enter Last Name"
             name="first-name"
+            id="last-name"
             defaultValue={this.props.heading.lastName}
           ></input>
         </label>
@@ -31,14 +33,16 @@ export default class Heading extends React.Component {
             type="email"
             placeholder="Enter Email"
             name="email"
+            id="email"
             defaultValue={this.props.heading.email}
           ></input>
         </label>
-        <label htmlFor="phone number">
+        <label htmlFor="phone-number">
           Phone Number:
           <input
             placeholder="Enter Phone Number"
-            name="phone number"
+            name="phone-number"
+            id="phone-number"
             defaultValue={this.props.heading.phoneNumber}
           ></input>
         </label>

@@ -6,6 +6,18 @@ export default class Education extends React.Component {
     super(props);
   }
 
+  addDeleteButton(key) {
+    return (
+      <button
+        className="delete-btn"
+        id={`btn-${key}`}
+        onClick={this.props.deleteEducation}
+      >
+        Delete Education
+      </button>
+    );
+  }
+
   render() {
     return (
       <>
@@ -43,6 +55,7 @@ export default class Education extends React.Component {
                   name="date-of-study"
                 ></input>
               </label>
+              {index !== 0 ? this.addDeleteButton(education.key) : null}
             </div>
           );
         })}

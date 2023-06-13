@@ -11,7 +11,9 @@ class App extends React.Component {
     super();
     this.boundedSwitchViews = this.switchViews.bind(this);
     this.boundedAddEducation = this.addEducation.bind(this);
+    this.boundedDeleteEducation = this.deleteEducation.bind(this);
     this.boundedAddExperience = this.addExperience.bind(this);
+    this.boundedDeleteExperience = this.deleteExperience.bind(this);
     this.boundedSubmitForm = this.submitForm.bind(this);
     this.state = {
       showContent: false,
@@ -26,7 +28,7 @@ class App extends React.Component {
       educationArray: [
         {
           schoolName: "Missouri Technology of Science and Technology",
-          titleOfStudy: "B.A. Engineering",
+          titleOfStudy: "Bachelors of Engineering",
           date: "2019",
           key: uniqid(),
         },
@@ -69,29 +71,24 @@ class App extends React.Component {
 
   showContent() {
     return (
-      <div className="content">
-        <Form
-          heading={this.state.heading}
-          educationArray={this.state.educationArray}
-          experienceArray={this.state.experienceArray}
-        />
-        <div className="button-container">
-          <button className="edit-btn" onClick={this.boundedSwitchViews}>
-            Edit
-          </button>
-          <button className="print-btn">Print</button>
-        </div>
-      </div>
+      <Form
+        heading={this.state.heading}
+        educationArray={this.state.educationArray}
+        experienceArray={this.state.experienceArray}
+        switchView={this.boundedSwitchViews}
+      />
     );
   }
 
   showForm() {
     return (
       <form className="form" key={uniqid()}>
-        <h1>CV Application</h1>
         <Heading heading={this.state.heading} />
         <section className="education-container">
-          <Education educationArray={this.state.educationArray} />
+          <Education
+            educationArray={this.state.educationArray}
+            deleteEducation={this.boundedDeleteEducation}
+          />
           <button
             className="add-education-btn"
             onClick={this.boundedAddEducation}
@@ -100,7 +97,10 @@ class App extends React.Component {
           </button>
         </section>
         <section className="experience-container">
-          <Experience experienceArray={this.state.experienceArray} />
+          <Experience
+            experienceArray={this.state.experienceArray}
+            deleteExperience={this.boundedDeleteExperience}
+          />
           <button
             className="add-experience-btn"
             onClick={this.boundedAddExperience}
@@ -132,18 +132,19 @@ class App extends React.Component {
       };
       educationArray.push(educationObject);
     });
+    const educationObject = {
+      schoolName: "",
+      titleOfStudy: "",
+      date: "",
+      key: uniqid(),
+    };
+
+    educationArray.push(educationObject);
+
     this.setState({
       educationArray: educationArray,
     });
-    this.setState({
-      education: {
-        schoolName: "",
-        titleOfStudy: "",
-        date: "",
-        key: uniqid(),
-      },
-      educationArray: [...this.state.educationArray, this.state.education],
-    });
+    console.log(this.state.educationArray);
   }
 
   addExperience(e) {
@@ -165,18 +166,49 @@ class App extends React.Component {
       };
       experienceArray.push(experienceObject);
     });
+
+    const experienceObject = {
+      companyName: "",
+      positionTitle: "",
+      task: "",
+      dates: "",
+      key: uniqid(),
+    };
+
+    experienceArray.push(experienceObject);
+
     this.setState({
       experienceArray: experienceArray,
     });
+  }
+
+  deleteEducation(e) {
+    e.preventDefault();
+    let targetKey = e.target.id;
+    targetKey = targetKey.split("-")[1];
+    const index = this.state.educationArray.findIndex((education) => {
+      if (education.key === targetKey) {
+        return true;
+      }
+      return false;
+    });
     this.setState({
-      experience: {
-        companyName: "",
-        positionTitle: "",
-        task: "",
-        dates: "",
-        key: uniqid(),
-      },
-      experienceArray: [...this.state.experienceArray, this.state.experience],
+      educationArray: this.state.educationArray.filter((_, i) => i !== index),
+    });
+  }
+
+  deleteExperience(e) {
+    e.preventDefault();
+    let targetKey = e.target.id;
+    targetKey = targetKey.split("-")[1];
+    const index = this.state.experienceArray.findIndex((experience) => {
+      if (experience.key === targetKey) {
+        return true;
+      }
+      return false;
+    });
+    this.setState({
+      experienceArray: this.state.experienceArray.filter((_, i) => i !== index),
     });
   }
 
@@ -244,6 +276,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <h1>CV Application</h1>
         {this.state.displayForm ? this.showForm() : null}
         {this.state.showContent ? this.showContent() : null}
       </div>
