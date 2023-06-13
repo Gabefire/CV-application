@@ -51,7 +51,9 @@ export default class Form extends React.Component {
           <button className="form-btn edit-btn" onClick={this.props.switchView}>
             Edit
           </button>
-          <button className="form-btn print-btn">Print</button>
+          <button className="form-btn print-btn" onClick={window.print}>
+            Print
+          </button>
         </div>
       </>
     );

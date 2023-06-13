@@ -8,7 +8,7 @@ export default class Experience extends React.Component {
   addDeleteButton(key) {
     return (
       <button
-        className="delete-btn"
+        className="delete-btn form-btn"
         id={`btn-${key}`}
         onClick={this.props.deleteExperience}
       >
@@ -49,7 +49,7 @@ export default class Experience extends React.Component {
                 Date Range:
                 <input
                   type="text"
-                  placeholder="Enter Dates mm/yyyy-mm/yyyy"
+                  placeholder="Enter Dates yyyy-yyyy"
                   name="dates"
                   defaultValue={experience.dates}
                   id={`dates ${index}`}

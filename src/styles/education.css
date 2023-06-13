@@ -1,8 +1,11 @@
-#education {
-  display: flex;
-  flex-direction: column;
+.education {
+  display: grid;
+  grid-template-columns: repeat(3, calc(1 / 3 * 100%));
+  gap: 10px;
+  margin-bottom: 40px;
 }
 
-.add-education-btn {
-  width: 15%;
+.education-container {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,8 +1,6 @@
 .experience {
-  display: flex;
-  flex-direction: column;
-}
-
-.add-experience-btn {
-  width: 200px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 10px;
+  margin-bottom: 40px;
 }

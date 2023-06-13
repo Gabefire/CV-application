@@ -27,9 +27,9 @@ class App extends React.Component {
 
       educationArray: [
         {
-          schoolName: "Missouri Technology of Science and Technology",
+          schoolName: "School of Technology",
           titleOfStudy: "Bachelors of Engineering",
-          date: "2019",
+          date: "2013",
           key: uniqid(),
         },
       ],
@@ -44,7 +44,7 @@ class App extends React.Component {
 
       experienceArray: [
         {
-          companyName: "Veterans United Home Loans",
+          companyName: "Mortgage Company",
           positionTitle: "Loan Coordinator",
           dates: "2019-present",
           task: "Provide excellent customer service and solve problems",
@@ -55,8 +55,8 @@ class App extends React.Component {
       heading: {
         firstName: "Gabriel",
         lastName: "Underwood",
-        email: "gabe1996@gmail.com",
-        phoneNumber: "573-854-3238",
+        email: "fake-email@gmail.com",
+        phoneNumber: "323-878-4538",
         key: uniqid(),
       },
     };
@@ -82,33 +82,39 @@ class App extends React.Component {
 
   showForm() {
     return (
-      <form className="form" key={uniqid()}>
+      <form key={uniqid()}>
+        <h2 className="input-title">Heading:</h2>
         <Heading heading={this.state.heading} />
+        <h2 className="input-title">Education:</h2>
         <section className="education-container">
           <Education
             educationArray={this.state.educationArray}
             deleteEducation={this.boundedDeleteEducation}
           />
           <button
-            className="add-education-btn"
+            className="add-btn form-btn"
             onClick={this.boundedAddEducation}
           >
             Add Education
           </button>
         </section>
+        <h2 className="input-title">Experience:</h2>
         <section className="experience-container">
           <Experience
             experienceArray={this.state.experienceArray}
             deleteExperience={this.boundedDeleteExperience}
           />
           <button
-            className="add-experience-btn"
+            className="add-btn form-btn"
             onClick={this.boundedAddExperience}
           >
             Add Experience
           </button>
         </section>
-        <button className="submit-form-btn" onClick={this.boundedSubmitForm}>
+        <button
+          className="submit-btn form-btn"
+          onClick={this.boundedSubmitForm}
+        >
           Submit Form
         </button>
       </form>
@@ -276,7 +282,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>CV Application</h1>
+        <h1 className="title">CV Application</h1>
         {this.state.displayForm ? this.showForm() : null}
         {this.state.showContent ? this.showContent() : null}
       </div>

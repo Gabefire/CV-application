@@ -9,7 +9,7 @@ export default class Education extends React.Component {
   addDeleteButton(key) {
     return (
       <button
-        className="delete-btn"
+        className="delete-btn form-btn"
         id={`btn-${key}`}
         onClick={this.props.deleteEducation}
       >
@@ -29,7 +29,7 @@ export default class Education extends React.Component {
                 <input
                   id={`school ${index}`}
                   defaultValue={education.schoolName}
-                  className="school-name"
+                  className="school-name-input"
                   placeholder="Enter School Name"
                   name="school-name"
                 ></input>

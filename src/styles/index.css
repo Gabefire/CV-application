@@ -12,12 +12,72 @@ body {
   gap: 20px;
 }
 
-.form {
+.title {
+  background-color: rgb(2, 2, 114);
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 3rem;
+  padding: 50px;
+  color: white;
+}
+
+.content,
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 40%;
+  align-self: center;
+  border: 2px solid black;
+  padding: 60px;
+  margin: 50px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.input-title {
+  margin-bottom: 0;
+  border-bottom: 2px solid lightgray;
+  padding-bottom: 5px;
+  font-size: 1.5rem;
+}
+
+label {
   display: flex;
   flex-direction: column;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
+input {
+  font-family: inherit;
+  border-radius: 5px;
+  border: none;
+  background-color: lightgray;
+  padding: 7px;
+  font-size: 1.2rem;
+}
+
+.form-btn {
+  height: 35px;
+  width: 70%;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+
+.add-btn {
+  background-color: rgb(4, 172, 4);
+}
+
+.delete-btn {
+  background-color: rgb(177, 2, 2);
+  width: 400px;
+}
+
+.submit-btn.form-btn {
+  margin-top: 50px;
+  width: 100%;
+  background-color: rgb(3, 3, 185);
 }
