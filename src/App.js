@@ -34,9 +34,9 @@ const App = () => {
     key: uniqid(),
   });
 
-  const switchViews = () => {
-    setContent(true);
-    setForm(false);
+  const switchView = () => {
+    setContent(!content);
+    setForm(!form);
   };
 
   const showContent = () => {
@@ -45,13 +45,12 @@ const App = () => {
         heading={heading}
         educationArray={educationArray}
         experienceArray={experienceArray}
-        switchView={switchViews}
+        switchView={switchView}
       />
     );
   };
 
-  const addEducation = (e) => {
-    e.preventDefault();
+  const grabEducationValue = () => {
     const educationSection = document.querySelectorAll(".education");
     const educationArray = [];
     educationSection.forEach((section) => {
@@ -67,13 +66,18 @@ const App = () => {
       };
       educationArray.push(educationObject);
     });
+    return educationArray;
+  };
+
+  const addEducation = (e) => {
+    e.preventDefault();
+    const educationArray = grabEducationValue();
     const educationObject = {
       schoolName: "",
       titleOfStudy: "",
       date: "",
       key: uniqid(),
     };
-
     educationArray.push(educationObject);
 
     setEducationArray(educationArray);
@@ -83,17 +87,14 @@ const App = () => {
     e.preventDefault();
     let targetKey = e.target.id;
     targetKey = targetKey.split("-")[1];
-    const index = educationArray.findIndex((education) => {
-      if (education.key === targetKey) {
-        return true;
-      }
-      return false;
-    });
-    setEducationArray(educationArray.filter((_, i) => i !== index));
+    const educationArray = grabEducationValue();
+
+    setEducationArray(
+      educationArray.filter((education) => education.key !== targetKey)
+    );
   };
 
-  const addExperience = (e) => {
-    e.preventDefault();
+  const grabExperienceValue = () => {
     const experienceSection = document.querySelectorAll(".experience");
     const experienceArray = [];
     experienceSection.forEach((section) => {
@@ -111,7 +112,12 @@ const App = () => {
       };
       experienceArray.push(experienceObject);
     });
+    return experienceArray;
+  };
 
+  const addExperience = (e) => {
+    e.preventDefault();
+    const experienceArray = grabExperienceValue();
     const experienceObject = {
       companyName: "",
       positionTitle: "",
@@ -119,24 +125,20 @@ const App = () => {
       dates: "",
       key: uniqid(),
     };
-
     experienceArray.push(experienceObject);
 
-    setEducationArray(experienceArray);
+    setExperienceArray(experienceArray);
   };
 
   const deleteExperience = (e) => {
     e.preventDefault();
     let targetKey = e.target.id;
     targetKey = targetKey.split("-")[1];
-    const index = experienceArray.findIndex((experience) => {
-      if (experience.key === targetKey) {
-        return true;
-      }
-      return false;
-    });
+    const experienceArray = grabExperienceValue();
 
-    setExperienceArray(experienceArray.filter((_, i) => i !== index));
+    setExperienceArray(
+      experienceArray.filter((experience) => experience !== targetKey)
+    );
   };
 
   const submitForm = (e) => {

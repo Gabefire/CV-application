@@ -2,6 +2,8 @@ import React from "react";
 import "../styles/education.css";
 
 const Education = ({ deleteEducation, educationArray }) => {
+  console.log(educationArray);
+
   const addDeleteButton = (key) => {
     return (
       <button

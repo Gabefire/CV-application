@@ -7,7 +7,7 @@ const Content = ({ heading, educationArray, experienceArray, switchView }) => {
       <div className="content">
         <div className="heading-content" key={heading.key}>
           <h1 className="name">
-            {this.props.heading.firstName} {heading.lastName}
+            {heading.firstName} {heading.lastName}
           </h1>
           <div className="contact-information">
             <div className="email">{heading.email}</div>
