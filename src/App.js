@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Heading from "./components/heading";
 import Education from "./components/education";
 import Experience from "./components/experience";
-import Form from "./components/form";
+import Content from "./components/content";
 import "./styles/index.css";
 import uniqid from "uniqid";
 
@@ -41,7 +41,7 @@ const App = () => {
 
   const showContent = () => {
     return (
-      <Form
+      <Content
         heading={heading}
         educationArray={educationArray}
         experienceArray={experienceArray}
